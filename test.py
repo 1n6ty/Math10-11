@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import random
 
-iterations = 100
-drunkmanWalks = 100
-
+iterations = int(input('Количество итераций: '))
+drunkmanWalks = iterations
+print('Точки (enter - конец ввода): ')
 #getting input
 coords = []
 while True:
