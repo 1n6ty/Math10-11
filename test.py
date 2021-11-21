@@ -51,12 +51,15 @@ coords2d2 = [[[x for x in j] for j in i] for i in coords2d]
 #iterative method
 for time in range(iterations):
     for i in range(1, len(coords2d) - 1):
-        flag = false
-        for j in range(1, len(coords2d[0]) - 1):
-            if coords2d[i][j][1]: #fix it, remove first and last
-                flag = not flag
-            if flag:
-                coords2d[i][j][0] = (coords2d[i - 1][j][0] + coords2d[i][j + 1][0] + coords2d[i - 1][j][0] + coords2d[i][j - 1][0]) / 4
+        flag = False
+        if len(list(filter(lambda x: x[1] == True, coords2d[i]))) == 2:
+            for j in range(1, len(coords2d[0]) - 1):
+                if coords2d[i][j - 1][1] and flag:
+                    flag = False
+                elif coords2d[i][j - 1][1] and not flag:
+                    flag = True
+                if flag:
+                    coords2d[i][j][0] = (coords2d[i - 1][j][0] + coords2d[i][j + 1][0] + coords2d[i - 1][j][0] + coords2d[i][j - 1][0]) / 4
 
 #drunkman method
 for i in range(1, len(coords2d2) - 1):
